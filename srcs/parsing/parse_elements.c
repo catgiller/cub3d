@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/03 14:10:10 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/06/03 14:16:31 by ervsahin         ###   ########.fr       */
+/*   Created: 2026/06/06 21:19:44 by ervsahin          #+#    #+#             */
+/*   Updated: 2026/06/06 23:17:47 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdio.h>
+#include "../../cub3d.h"
 
-int main(int argc,char **argv)
+int	parse_identifier(char *line, t_map *map)
 {
-    int fd = 0;
-    if (argc != 2)
-        perror("invalid arguments!");
-    fd = open(argv[1], O_RDONLY);
-    if (fd == -1)
-        perror("opening file failed!");
-    
+	(void)line;
+	(void)map;
+	return (0);
+}
+
+int	parse_color(char *line, int *color)
+{
+	(void)line;
+	(void)color;
+	return (0);
+}
+
+int	parse_texture(char *line, char **texture)
+{
+	(void)line;
+	(void)texture;
+	return (0);
 }
