@@ -2,11 +2,11 @@ NAME		= cub3D
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-CPPFLAGS	= -Ilibft
+CPPFLAGS	= -Ilibft -Iget_next_line
 
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
-GNL_DIR		= get_next_line
+GNL_DIR		= utils/get_next_line
 GNL_SRCS	= $(GNL_DIR)/get_next_line.c \
 			  $(GNL_DIR)/get_next_line_utils.c
 
