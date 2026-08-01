@@ -6,12 +6,15 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 17:38:45 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/01 20:38:33 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/02 00:21:13 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 
 char *skip_whitespace(char *line)
 {
@@ -41,7 +44,7 @@ char	*extract_path(char *line)
 	path_len = line - path_start;
 	path = malloc(path_len + 1);
 	if (!path)
-		print_error("Malloc failed.");
+		return (NULL);
 	while (i < path_len)
 	{
 		path[i] = path_start[i];
@@ -49,4 +52,27 @@ char	*extract_path(char *line)
 	}
 	path[path_len] = '\0';
 	return (path);
+}
+int	check_texture_file(char *path)
+{
+	int	i;
+	int	end;
+	int	fd;
+
+	i = 0;
+	while (path[i])
+		i++;
+	if (i < 4)
+		return (0);
+	end = i - 1;
+	if (path[end] != 'm'
+		|| path[end - 1] != 'p'
+		|| path[end - 2] != 'x'
+		|| path[end - 3] != '.')
+		return (0);
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	close(fd);
+	return (1);
 }
