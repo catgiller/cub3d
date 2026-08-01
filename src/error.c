@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_elements.c                                   :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/06 21:19:44 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/06/06 23:17:47 by ervsahin         ###   ########.fr       */
+/*   Created: 2026/07/31 23:57:45 by ervsahin          #+#    #+#             */
+/*   Updated: 2026/08/01 01:13:49 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-int	parse_identifier(char *line, t_map *map)
+void	print_error(char *message)
 {
-	(void)line;
-	(void)map;
-	return (0);
-}
-
-int	parse_color(char *line, int *color)
-{
-	(void)line;
-	(void)color;
-	return (0);
-}
-
-int	parse_texture(char *line, char **texture)
-{
-	(void)line;
-	(void)texture;
-	return (0);
+	printf("Error: %s\n", message);
+	exit(1);
 }
