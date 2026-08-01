@@ -6,17 +6,12 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 17:38:45 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/01 19:46:36 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/01 20:38:33 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
-char *extract_path(char *line)
-{
-	
-}
+#include <stdlib.h>
 
 char *skip_whitespace(char *line)
 {
@@ -26,4 +21,32 @@ char *skip_whitespace(char *line)
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	return (line + i);
+}
+char	*extract_path(char *line)
+{
+	char	*path;
+	char	*path_start;
+	int		path_len;
+	int		i;
+
+	i = 0;
+	line = skip_whitespace(line);
+	line += 2;
+	line = skip_whitespace(line);
+	path_start = line;
+	while (*line != '\n' && *line != '\0')
+		line++;
+	while (line > path_start && (*(line - 1) == ' ' || *(line - 1) == '\t'))
+		line--;
+	path_len = line - path_start;
+	path = malloc(path_len + 1);
+	if (!path)
+		print_error("Malloc failed.");
+	while (i < path_len)
+	{
+		path[i] = path_start[i];
+		i++;
+	}
+	path[path_len] = '\0';
+	return (path);
 }
