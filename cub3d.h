@@ -50,5 +50,9 @@ void	print_error(char *message);
 int		check_file_extension(char *file_name);
 void	parser(t_game *game, char *file);
 void	read_file(int fd, t_game *game);
+char    *extract_path(char *line);
+char 	*skip_whitespace(char *line);
+int 	get_idenfitier(char *line);
+int 	parse_texture(char *line, t_game *game);
 
 #endif

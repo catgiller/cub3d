@@ -6,7 +6,7 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 14:37:30 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/01 14:42:43 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/01 19:47:13 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	read_file(int fd, t_game *game)
 		print_error("Empty file.");
 	while (line)
 	{
+		parse_texture(line,game);
+		extract_path(line);
 		free(line);
 		line = get_next_line(fd);
 	}
