@@ -6,17 +6,12 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 14:46:26 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/01 20:05:26 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/02 00:09:22 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
-
-#define NO_ID   1
-#define SO_ID   2
-#define WE_ID   3
-#define EA_ID   4
 
 int	get_identifier(char *line)
 {
@@ -35,25 +30,55 @@ int	get_identifier(char *line)
 	return (0);
 }
 
+int	store_texture(t_game *game, int id, char *path)
+{
+	if (id == NO_ID && game->textures.no == NULL)
+		game->textures.no = path;
+	else if (id == SO_ID && game->textures.so == NULL)
+		game->textures.so = path;
+	else if (id == WE_ID && game->textures.we == NULL)
+		game->textures.we = path;
+	else if (id == EA_ID && game->textures.ea == NULL)
+		game->textures.ea = path;
+	else
+	{
+		print_error("Invalid texture configuration.");
+		return (0);
+	}
+	return (1);
+}
+
+int	check_texture_file(char *path)
+{
+	int	i;
+	int	end;
+
+	i = 0;
+	while (path[i])
+		i++;
+	if (i < 4)
+		return (0);
+	end = i - 1;
+	if (path[end] == 'm'
+		&& path[end - 1] == 'p'
+		&& path[end - 2] == 'x'
+		&& path[end - 3] == '.')
+		return (1);
+	return (0);
+}
+
 int	parse_texture(char *line, t_game *game)
 {
 	int		id;
+	char	*path;
 
-	id = 0;
 	line = skip_whitespace(line);
-	id = get_idenfitier(line);
-	if (id == 1)
-		game->textures.no = extract_path(line);
-	else if (id == 2)
-		game->textures.so = extract_path(line);
-	else if (id == 3)
-		game->textures.we = extract_path(line);
-	else if (id == 4)
-		game->textures.ea = extract_path(line);
-	else
-	{
-		print_error("Invalid texture identifier.");
+	id = get_identifier(line);
+	if (id == 0)
 		return (0);
-	}
+	path = extract_path(line);
+	check_texture_file(path);
+	if (!store_texture(game, id, path))
+		return (0);
 	return (1);
 }
