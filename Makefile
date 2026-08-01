@@ -6,13 +6,15 @@ CPPFLAGS	= -Ilibft -Iget_next_line
 
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
-GNL_DIR		= utils/get_next_line
-GNL_SRCS	= $(GNL_DIR)/get_next_line.c \
-			  $(GNL_DIR)/get_next_line_utils.c
+GNL_DIR		= get_next_line
+GNL_SRCS	= $(GNL_DIR)/get_next_line.c
 
 SRCS		= main.c \
 			  src/error.c \
 			  src/parser/parser.c \
+			  src/parser/read_file.c \
+			  src/parser/parse_texture.c \
+			  src/parser/parse_texture_utils.c \
 			  $(GNL_SRCS)
 
 OBJS		= $(SRCS:.c=.o)
@@ -39,3 +41,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+CPPFLAGS += -I.
