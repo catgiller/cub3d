@@ -49,5 +49,6 @@ typedef struct s_game
 void	print_error(char *message);
 int		check_file_extension(char *file_name);
 void	parser(t_game *game, char *file);
+void	read_file(int fd, t_game *game);
 
 #endif
