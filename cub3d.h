@@ -5,6 +5,8 @@
 #define SO_ID   2
 #define WE_ID   3
 #define EA_ID   4
+#define FLOOR_ID 5
+#define CEILING_ID 6
 
 typedef struct s_map
 {
@@ -48,6 +50,8 @@ typedef struct s_game
 	t_player	player;
 	t_color		floor;
 	t_color		ceiling;
+	int			floor_set;
+	int			ceiling_set;
 	t_mlx		mlx;
 }	t_game;
 
@@ -61,5 +65,7 @@ int		get_identifier(char *line);
 int		parse_texture(char *line, t_game *game);
 int		store_texture(t_game *game, int id, char *path);
 int		check_texture_file(char *path);
+int		read_number(char **line, int *value);
+void	init_game(t_game *game);
 
 #endif
