@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libft.h"
+#include "utils/libft/libft.h"
 #include <stdlib.h>
 
 int	get_identifier(char *line)

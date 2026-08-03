@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
-#include "../../libft/libft.h"
-#include "../get_next_line/get_next_line.h"
+#include "cub3d.h"
+#include "utils/libft/libft.h"
+#include "utils/get_next_line/get_next_line.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>

@@ -6,17 +6,16 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 17:38:45 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/02 00:31:15 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/03 14:20:50 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdlib.h>
 #include <fcntl.h>
+#include <stdlib.h>
 #include <unistd.h>
 
-
-char *skip_whitespace(char *line)
+char	*skip_whitespace(char *line)
 {
 	int	i;
 
@@ -25,6 +24,7 @@ char *skip_whitespace(char *line)
 		i++;
 	return (line + i);
 }
+
 char	*extract_path(char *line)
 {
 	char	*path;
@@ -53,6 +53,7 @@ char	*extract_path(char *line)
 	path[path_len] = '\0';
 	return (path);
 }
+
 int	check_texture_file(char *path)
 {
 	int	i;
