@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/03 14:10:10 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/03 13:06:10 by ervsahin         ###   ########.fr       */
+/*   Created: 2026/08/03 14:32:11 by ervsahin          #+#    #+#             */
+/*   Updated: 2026/08/03 14:32:12 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_game	game;
+	unsigned char	*ptr;
 
-	if (argc != 2)
-		print_error("Invalid arguments!");
-	init_game(&game);
-	parser(&game, argv[1]);
+	ptr = (unsigned char *)s;
+	while (n--)
+	{
+		if (*ptr == (unsigned char)c)
+			return (ptr);
+		ptr++;
+	}
 	return (0);
 }

@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/03 14:10:10 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/03 13:06:10 by ervsahin         ###   ########.fr       */
+/*   Created: 2026/08/03 14:33:35 by ervsahin          #+#    #+#             */
+/*   Updated: 2026/08/03 14:33:36 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+size_t	ft_strlen(const char *s)
 {
-	t_game	game;
+	size_t	i;
 
-	if (argc != 2)
-		print_error("Invalid arguments!");
-	init_game(&game);
-	parser(&game, argv[1]);
-	return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

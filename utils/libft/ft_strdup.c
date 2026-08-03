@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/03 14:10:10 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/03 13:06:10 by ervsahin         ###   ########.fr       */
+/*   Created: 2026/08/03 14:31:53 by ervsahin          #+#    #+#             */
+/*   Updated: 2026/08/03 14:31:55 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(const char *s)
 {
-	t_game	game;
+	char	*dup;
+	size_t	len;
 
-	if (argc != 2)
-		print_error("Invalid arguments!");
-	init_game(&game);
-	parser(&game, argv[1]);
-	return (0);
+	len = ft_strlen(s);
+	dup = (char *)malloc(len + 1);
+	if (!dup)
+		return (0);
+	ft_memcpy(dup, s, len + 1);
+	return (dup);
 }

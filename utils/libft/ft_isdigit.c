@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/03 14:10:10 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/03 13:06:10 by ervsahin         ###   ########.fr       */
+/*   Created: 2025/06/10 07:18:22 by ervsahin          #+#    #+#             */
+/*   Updated: 2026/08/03 14:32:08 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-int	main(int argc, char **argv)
+int	ft_isdigit(int c)
 {
-	t_game	game;
-
-	if (argc != 2)
-		print_error("Invalid arguments!");
-	init_game(&game);
-	parser(&game, argv[1]);
-	return (0);
+	if (c > 47 && c < 58)
+		return (1);
+	else
+		return (0);
 }

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/03 14:10:10 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/03 13:06:10 by ervsahin         ###   ########.fr       */
+/*   Created: 2026/08/03 14:31:21 by ervsahin          #+#    #+#             */
+/*   Updated: 2026/08/03 14:31:24 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_game	game;
+	void	*ptr;
 
-	if (argc != 2)
-		print_error("Invalid arguments!");
-	init_game(&game);
-	parser(&game, argv[1]);
-	return (0);
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (0);
+	ft_memset(ptr, 0, count * size);
+	return (ptr);
 }

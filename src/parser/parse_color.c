@@ -6,12 +6,12 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 10:13:17 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/02 13:28:26 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/03 14:22:36 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "libft.h"
+#include "utils/libft/libft.h"
 
 int	read_number(char **line, int *value)
 {
@@ -53,14 +53,13 @@ int	get_color_identifier(char *line)
 	if (!ft_strncmp(line, "F", 1)
 		&& (line[1] == ' ' || line[1] == '\t'))
 		return (FLOOR_ID);
-	else if (!ft_strncmp(line, "C", 1) 
+	else if (!ft_strncmp(line, "C", 1)
 		&& (line[1] == ' ' || line[1] == '\t'))
 		return (CEILING_ID);
 	return (0);
 }
 
-
-int store_color(t_game *game, int id, t_color color)
+int	store_color(t_game *game, int id, t_color color)
 {
 	if (id == FLOOR_ID && game->floor_set == 0)
 	{
@@ -79,19 +78,21 @@ int store_color(t_game *game, int id, t_color color)
 	}
 	return (1);
 }
-int parse_color(char *line, t_game *game)
+
+int	parse_color(char *line, t_game *game)
 {
-	int	id;
-	t_color color;
+	int		id;
+	t_color	color;
+
 	id = 0;
 	line = skip_whitespace(line);
-	id = (get_color_identifier(line));
+	id = get_color_identifier(line);
 	if (id == 0)
 	{
 		print_error("i m blind");
-		return(0);
+		return (0);
 	}
-	if (!extract_rgb (line, &color))
+	if (!extract_rgb(line, &color))
 	{
 		print_error("did you miss something on the color?");
 		return (0);
