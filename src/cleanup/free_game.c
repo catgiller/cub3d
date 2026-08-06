@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/03 14:33:15 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/03 14:33:16 by ervsahin         ###   ########.fr       */
+/*   Created: 2026/08/04 18:00:00 by ervsahin          #+#    #+#             */
+/*   Updated: 2026/08/04 18:00:00 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
+#include <stdlib.h>
 
-char	*ft_strrchr(const char *s, int c)
+void	free_game(t_game *game)
 {
-	char	*last;
-
-	last = 0;
-	while (*s)
-	{
-		if (*s == (char)c)
-			last = (char *)s;
-		s++;
-	}
-	if (*s == (char)c)
-		last = (char *)s;
-	return (last);
+	if (game->textures.no)
+		free(game->textures.no);
+	if (game->textures.so)
+		free(game->textures.so);
+	if (game->textures.we)
+		free(game->textures.we);
+	if (game->textures.ea)
+		free(game->textures.ea);
+	if (game->map.grid)
+		free_map(game->map.grid, game->map.height);
 }

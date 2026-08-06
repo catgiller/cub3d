@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   parse_map_utils.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/03 14:30:00 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/03 14:22:34 by ervsahin         ###   ########.fr       */
+/*   Created: 2026/08/04 18:00:00 by ervsahin          #+#    #+#             */
+/*   Updated: 2026/08/04 18:00:00 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft.h"
+#ifndef PARSE_MAP_UTILS_H
+# define PARSE_MAP_UTILS_H
 
-void	ft_putstr_fd(char *s, int fd)
+typedef struct s_node
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
-}
+	char			*str;
+	struct s_node	*next;
+}	t_node;
+
+void	trim_newline(char *line);
+t_node	*node_new(char *str);
+void	node_add_back(t_node **head, t_node *new_node);
+void	free_node_list(t_node *head);
+
+#endif

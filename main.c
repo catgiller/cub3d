@@ -20,5 +20,6 @@ int	main(int argc, char **argv)
 		print_error("Invalid arguments!");
 	init_game(&game);
 	parser(&game, argv[1]);
+	free_game(&game);
 	return (0);
 }
