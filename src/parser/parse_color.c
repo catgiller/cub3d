@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "utils/libft/libft.h"
+#include "libft.h"
 
 int	read_number(char **line, int *value)
 {
@@ -59,7 +59,7 @@ int	get_color_identifier(char *line)
 	return (0);
 }
 
-int	store_color(t_game *game, int id, t_color color)
+void	store_color(t_game *game, int id, t_color color)
 {
 	if (id == FLOOR_ID && game->floor_set == 0)
 	{
@@ -72,32 +72,19 @@ int	store_color(t_game *game, int id, t_color color)
 		game->ceiling_set = 1;
 	}
 	else
-	{
 		print_error("Invalid color configuration.");
-		return (0);
-	}
-	return (1);
 }
 
-int	parse_color(char *line, t_game *game)
+void	parse_color(char *line, t_game *game)
 {
 	int		id;
 	t_color	color;
 
-	id = 0;
 	line = skip_whitespace(line);
 	id = get_color_identifier(line);
 	if (id == 0)
-	{
-		print_error("i m blind");
-		return (0);
-	}
+		print_error("Invalid color identifier.");
 	if (!extract_rgb(line, &color))
-	{
-		print_error("did you miss something on the color?");
-		return (0);
-	}
-	if (!store_color(game, id, color))
-		return (0);
-	return (1);
+		print_error("Invalid color format.");
+	store_color(game, id, color);
 }

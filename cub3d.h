@@ -6,7 +6,7 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 14:21:47 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/03 14:30:49 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/04 15:41:08 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ typedef struct s_game
 	t_mlx		mlx;
 }	t_game;
 
+typedef struct s_flood
+{
+	char	**map;
+	int		width;
+	int		height;
+	int		closed;
+}	t_flood;
+
 void	print_error(char *message);
 int		check_file_extension(char *file_name);
 void	parser(t_game *game, char *file);
@@ -74,15 +82,25 @@ void	read_file(int fd, t_game *game);
 char	*extract_path(char *line);
 char	*skip_whitespace(char *line);
 int		get_identifier(char *line);
-int		parse_texture(char *line, t_game *game);
-int		store_texture(t_game *game, int id, char *path);
+void	parse_texture(char *line, t_game *game);
+void	store_texture(t_game *game, int id, char *path);
 int		check_texture_file(char *path);
 int		read_number(char **line, int *value);
 void	init_game(t_game *game);
 int		get_color_identifier(char *line);
-int		parse_color(char *line, t_game *game);
-int		store_color(t_game *game, int id, t_color color);
+void	parse_color(char *line, t_game *game);
+void	store_color(t_game *game, int id, t_color color);
 int		extract_rgb(char *line, t_color *color);
-int		read_number(char **line, int *value);
+void	check_config_complete(t_game *game);
+int		parse_map(t_game *game, char *first_map_line, int fd);
+int		is_empty_line(char *line);
+char	**read_map_lines(char *first_map_line, int fd, int *height);
+int		calculate_map_width(char **map);
+int		store_map(t_game *game, char **map, int width, int height);
+void	free_map(char **map, int height);
+void	free_game(t_game *game);
+void	parse_map_validation(t_game *game);
+void	validate_map_enclosed(t_game *game);
+int		is_player_char(char c);
 
 #endif

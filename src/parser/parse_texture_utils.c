@@ -6,7 +6,7 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 17:38:45 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/03 14:20:50 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/03 16:21:25 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,13 @@ int	check_texture_file(char *path)
 		return (0);
 	close(fd);
 	return (1);
+}
+
+int	is_empty_line(char *line)
+{
+	while (*line == ' ' || *line == '\t')
+		line++;
+	if (*line == '\n' || *line == '\0')
+		return (1);
+	return (0);
 }

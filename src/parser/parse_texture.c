@@ -6,12 +6,12 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 14:46:26 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/02 00:22:13 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/06 15:12:46 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "utils/libft/libft.h"
+#include "libft.h"
 #include <stdlib.h>
 
 int	get_identifier(char *line)
@@ -31,7 +31,7 @@ int	get_identifier(char *line)
 	return (0);
 }
 
-int	store_texture(t_game *game, int id, char *path)
+void	store_texture(t_game *game, int id, char *path)
 {
 	if (id == NO_ID && game->textures.no == NULL)
 		game->textures.no = path;
@@ -43,13 +43,12 @@ int	store_texture(t_game *game, int id, char *path)
 		game->textures.ea = path;
 	else
 	{
+		free(path);
 		print_error("Invalid texture configuration.");
-		return (0);
 	}
-	return (1);
 }
 
-int	parse_texture(char *line, t_game *game)
+void	parse_texture(char *line, t_game *game)
 {
 	int		id;
 	char	*path;
@@ -57,10 +56,7 @@ int	parse_texture(char *line, t_game *game)
 	line = skip_whitespace(line);
 	id = get_identifier(line);
 	if (id == 0)
-	{
 		print_error("Invalid texture identifier.");
-		return (0);
-	}
 	path = extract_path(line);
 	if (!path)
 		print_error("Malloc failed.");
@@ -68,12 +64,6 @@ int	parse_texture(char *line, t_game *game)
 	{
 		free(path);
 		print_error("Invalid texture file.");
-		return (0);
 	}
-	if (!store_texture(game, id, path))
-	{
-		free(path);
-		return (0);
-	}
-	return (1);
+	store_texture(game, id, path);
 }
