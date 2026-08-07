@@ -13,6 +13,21 @@
 #include "cub3d.h"
 #include <stdlib.h>
 
+static void	init_tex(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		game->tex[i].img = NULL;
+		game->tex[i].addr = NULL;
+		game->tex[i].width = 0;
+		game->tex[i].height = 0;
+		i++;
+	}
+}
+
 void	init_game(t_game *game)
 {
 	game->textures.no = NULL;
@@ -25,6 +40,12 @@ void	init_game(t_game *game)
 	game->player.x = 0;
 	game->player.y = 0;
 	game->player.dir = '\0';
+	game->player.pos_x = 0.0;
+	game->player.pos_y = 0.0;
+	game->player.dir_x = 0.0;
+	game->player.dir_y = 0.0;
+	game->player.plane_x = 0.0;
+	game->player.plane_y = 0.0;
 	game->floor.r = 0;
 	game->floor.g = 0;
 	game->floor.b = 0;
@@ -35,4 +56,7 @@ void	init_game(t_game *game)
 	game->ceiling_set = 0;
 	game->mlx.mlx = NULL;
 	game->mlx.win = NULL;
+	game->mlx.img.img = NULL;
+	game->mlx.img.addr = NULL;
+	init_tex(game);
 }

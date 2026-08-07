@@ -27,6 +27,13 @@ CLEANUP_SRCS= src/cleanup/free_map.c \
 SRCS		= main.c \
 			  src/utils/error.c \
 			  src/init/init_game.c \
+			  src/init/init_mlx.c \
+			  src/init/init_player.c \
+			  src/init/load_textures.c \
+			  src/game/movement.c \
+			  src/game/rotation.c \
+			  src/render/render.c \
+			  src/render/raycaster.c \
 			  src/parser/parser.c \
 			  src/parser/read_file.c \
 			  src/parser/parse_texture.c \
@@ -43,7 +50,7 @@ OBJS		= $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -L$(MLX_DIR) -lmlx -Wl,-rpath,$(MLX_DIR) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -L$(MLX_DIR) -lmlx -lm -Wl,-rpath,$(MLX_DIR) -o $(NAME)
 	cp $(MLX) .
 
 $(LIBFT):
@@ -68,6 +75,9 @@ re: fclean all
 
 norm:
 	norminette main.c cub3d.h src/utils/error.c src/init/init_game.c \
+	src/init/init_mlx.c src/init/init_player.c src/init/load_textures.c \
+	src/game/movement.c src/game/rotation.c \
+	src/render/render.c src/render/raycaster.c \
 	src/parser/parser.c src/parser/read_file.c src/parser/parse_texture.c \
 	src/parser/parse_texture_utils.c src/parser/parse_color.c \
 	src/parser/parse_map.c \
