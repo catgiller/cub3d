@@ -2,10 +2,14 @@ NAME		= cub3D
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-CPPFLAGS	= -Ilibft -Ignl -Isrc/parser/utils -Isrc/cleanup
+CPPFLAGS	= -Ilibft -Ignl -Isrc/parser/utils -Isrc/cleanup -Iminilibx -I.
 
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
+
+MLX_DIR		= minilibx
+MLX			= $(MLX_DIR)/libmlx.dylib
+
 GNL_DIR		= gnl
 GNL_SRCS	= $(GNL_DIR)/get_next_line.c
 
@@ -38,22 +42,27 @@ OBJS		= $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -L$(MLX_DIR) -lmlx -Wl,-rpath,$(MLX_DIR) -o $(NAME)
+	cp $(MLX) .
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
+
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
 	rm -f $(OBJS)
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -f $(NAME)
+	rm -f $(NAME) libmlx.dylib
 
 re: fclean all
 
@@ -71,4 +80,3 @@ norm:
 	libft/*.c libft/libft.h
 
 .PHONY: all clean fclean re norm
-CPPFLAGS += -I.
