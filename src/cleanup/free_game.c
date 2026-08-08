@@ -13,6 +13,19 @@
 #include "cub3d.h"
 #include <stdlib.h>
 
+static void	free_textures(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (game->tex[i].img && game->mlx.mlx)
+			mlx_destroy_image(game->mlx.mlx, game->tex[i].img);
+		i++;
+	}
+}
+
 void	free_game(t_game *game)
 {
 	if (game->textures.no)
@@ -25,4 +38,9 @@ void	free_game(t_game *game)
 		free(game->textures.ea);
 	if (game->map.grid)
 		free_map(game->map.grid, game->map.height);
+	free_textures(game);
+	if (game->mlx.img.img && game->mlx.mlx)
+		mlx_destroy_image(game->mlx.mlx, game->mlx.img.img);
+	if (game->mlx.win && game->mlx.mlx)
+		mlx_destroy_window(game->mlx.mlx, game->mlx.win);
 }

@@ -1,0 +1,15 @@
+# MiniLibX directory
+minilibx/
+
+# Build outputs
+cub3D
+*.o
+*.a
+*.dylib
+*.swiftdoc
+*.swiftmodule
+
+# OS / Editor files
+.DS_Store
+.vscode/
+.idea/
