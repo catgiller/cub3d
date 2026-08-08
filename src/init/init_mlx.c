@@ -6,22 +6,28 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 18:55:00 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/07 18:55:00 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/08 19:06:08 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdlib.h>
 
-int	close_game(t_game *game)
+int	close_game(void *param)
 {
+	t_game	*game;
+
+	game = (t_game *)param;
 	free_game(game);
 	exit(0);
 	return (0);
 }
 
-int	handle_keypress(int keycode, t_game *game)
+int	handle_keypress(int keycode, void *param)
 {
+	t_game	*game;
+
+	game = (t_game *)param;
 	if (keycode == KEY_ESC)
 		close_game(game);
 	else if (keycode == KEY_W)
@@ -33,9 +39,9 @@ int	handle_keypress(int keycode, t_game *game)
 	else if (keycode == KEY_D)
 		move_right(game);
 	else if (keycode == KEY_LEFT)
-		rotate_left(game);
-	else if (keycode == KEY_RIGHT)
 		rotate_right(game);
+	else if (keycode == KEY_RIGHT)
+		rotate_left(game);
 	return (0);
 }
 
@@ -55,7 +61,7 @@ void	init_mlx(t_game *game)
 			&game->mlx.img.bpp, &game->mlx.img.line_len,
 			&game->mlx.img.endian);
 	load_textures(game);
-	mlx_hook(game->mlx.win, 17, 0, close_game, game);
-	mlx_hook(game->mlx.win, 2, 1L << 0, handle_keypress, game);
-	mlx_loop_hook(game->mlx.mlx, render_frame, game);
+	mlx_hook(game->mlx.win, 17, 0, (int (*)())close_game, game);
+	mlx_hook(game->mlx.win, 2, 1L << 0, (int (*)())handle_keypress, game);
+	mlx_loop_hook(game->mlx.mlx, (int (*)())render_frame, game);
 }

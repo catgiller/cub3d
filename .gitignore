@@ -3,6 +3,7 @@ minilibx/
 
 # Build outputs
 cub3D
+obj/
 *.o
 *.a
 *.dylib

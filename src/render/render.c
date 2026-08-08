@@ -83,8 +83,11 @@ void	draw_wall_stripe(t_game *game, t_ray *ray, int x)
 	}
 }
 
-int	render_frame(t_game *game)
+int	render_frame(void *param)
 {
+	t_game	*game;
+
+	game = (t_game *)param;
 	draw_background(game);
 	cast_rays(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win,

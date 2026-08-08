@@ -19,13 +19,13 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 # define MOVE_SPEED 0.08
 # define ROT_SPEED 0.05
@@ -178,10 +178,10 @@ void	parse_map_validation(t_game *game);
 void	validate_map_enclosed(t_game *game);
 int		is_player_char(char c);
 void	init_mlx(t_game *game);
-int		close_game(t_game *game);
-int		handle_keypress(int keycode, t_game *game);
+int		close_game(void *param);
+int		handle_keypress(int keycode, void *param);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-int		render_frame(t_game *game);
+int		render_frame(void *param);
 void	init_player(t_game *game);
 void	load_textures(t_game *game);
 void	move_forward(t_game *game);
