@@ -41,4 +41,5 @@ void	read_file(int fd, t_game *game)
 		free(line);
 		line = get_next_line(fd);
 	}
+	print_error("No map found.");
 }
