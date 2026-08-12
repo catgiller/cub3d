@@ -27,13 +27,7 @@ void	read_file(int fd, t_game *game)
 			parse_texture(line, game);
 		else if (get_color_identifier(skip_whitespace(line)) != 0)
 			parse_color(line, game);
-		else if (is_empty_line(line))
-		{
-			free(line);
-			line = get_next_line(fd);
-			continue ;
-		}
-		else
+		else if (!is_empty_line(line))
 		{
 			parse_map(game, line, fd);
 			return ;

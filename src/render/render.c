@@ -90,6 +90,7 @@ int	render_frame(void *param)
 	game = (t_game *)param;
 	draw_background(game);
 	cast_rays(game);
+	draw_minimap(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win,
 		game->mlx.img.img, 0, 0);
 	return (0);
