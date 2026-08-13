@@ -6,7 +6,7 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 14:21:47 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/04 15:41:08 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/12 17:43:07 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@
 # define FLOOR_ID 5
 # define CEILING_ID 6
 # define TILE_SIZE 16
+
+# define MINIMAP_CELL 10
+# define MINIMAP_RADIUS 15
+# define MINIMAP_OFF_X 15
+# define MINIMAP_OFF_Y 15
 
 # define TEX_NO 0
 # define TEX_SO 1
@@ -145,8 +150,10 @@ typedef struct s_game
 typedef struct s_flood
 {
 	char	**map;
+	int		*stack;
 	int		width;
 	int		height;
+	int		top;
 	int		closed;
 }	t_flood;
 
@@ -192,5 +199,6 @@ void	rotate_left(t_game *game);
 void	rotate_right(t_game *game);
 void	cast_rays(t_game *game);
 void	draw_wall_stripe(t_game *game, t_ray *ray, int x);
+void	draw_minimap(t_game *game);
 
 #endif

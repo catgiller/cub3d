@@ -21,9 +21,12 @@ int	check_file_extension(char *file_name)
 	int	len;
 
 	len = ft_strlen(file_name);
-	if (len < 4)
+	while (len > 0 && file_name[len - 1] != '/')
+		len--;
+	len = ft_strlen(file_name) - len;
+	if (len < 5)
 		return (0);
-	if (ft_strncmp(&file_name[len - 4], ".cub", 4) != 0)
+	if (ft_strncmp(&file_name[ft_strlen(file_name) - 4], ".cub", 4) != 0)
 		return (0);
 	return (1);
 }

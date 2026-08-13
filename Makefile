@@ -34,6 +34,7 @@ SRCS		= main.c \
 			  src/game/rotation.c \
 			  src/render/render.c \
 			  src/render/raycaster.c \
+			  src/render/minimap.c \
 			  src/parser/parser.c \
 			  src/parser/read_file.c \
 			  src/parser/parse_texture.c \
