@@ -36,46 +36,47 @@ static char	**copy_map(t_game *game)
 	return (copy);
 }
 
-static void	flood_fill(t_flood *f, int x, int y)
+static void	check_neighbor(t_flood *f, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= f->width || y >= f->height)
 	{
 		f->closed = 0;
 		return ;
 	}
-	if (f->map[y][x] == '1' || f->map[y][x] == 'F')
-		return ;
 	if (f->map[y][x] == ' ')
 	{
 		f->closed = 0;
 		return ;
 	}
+	if (f->map[y][x] == '1' || f->map[y][x] == 'F')
+		return ;
 	f->map[y][x] = 'F';
-	flood_fill(f, x + 1, y);
-	flood_fill(f, x - 1, y);
-	flood_fill(f, x, y + 1);
-	flood_fill(f, x, y - 1);
+	f->stack[f->top++] = y * f->width + x;
 }
 
-static void	check_unreachable(char **copy, t_game *game)
+static void	flood_fill(t_flood *f, int start_x, int start_y)
 {
-	int	i;
-	int	j;
+	int	pos;
+	int	x;
+	int	y;
 
-	i = -1;
-	while (++i < game->map.height)
+	f->stack = malloc(sizeof(int) * f->width * f->height);
+	if (!f->stack)
+		print_error("Malloc failed.");
+	f->top = 0;
+	f->map[start_y][start_x] = 'F';
+	f->stack[f->top++] = start_y * f->width + start_x;
+	while (f->top > 0)
 	{
-		j = -1;
-		while (++j < game->map.width)
-		{
-			if (copy[i][j] != 'F' && copy[i][j] != '1'
-				&& copy[i][j] != ' ')
-			{
-				free_map(copy, game->map.height);
-				print_error("Map has unreachable areas.");
-			}
-		}
+		pos = f->stack[--f->top];
+		x = pos % f->width;
+		y = pos / f->width;
+		check_neighbor(f, x + 1, y);
+		check_neighbor(f, x - 1, y);
+		check_neighbor(f, x, y + 1);
+		check_neighbor(f, x, y - 1);
 	}
+	free(f->stack);
 }
 
 void	validate_map_enclosed(t_game *game)
@@ -94,6 +95,5 @@ void	validate_map_enclosed(t_game *game)
 		free_map(copy, game->map.height);
 		print_error("Map not enclosed by walls.");
 	}
-	check_unreachable(copy, game);
 	free_map(copy, game->map.height);
 }

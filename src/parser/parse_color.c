@@ -80,6 +80,9 @@ void	parse_color(char *line, t_game *game)
 	int		id;
 	t_color	color;
 
+	if (!game->textures.no || !game->textures.so
+		|| !game->textures.we || !game->textures.ea)
+		print_error("Textures must come before colors.");
 	line = skip_whitespace(line);
 	id = get_color_identifier(line);
 	if (id == 0)

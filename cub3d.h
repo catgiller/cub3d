@@ -150,8 +150,10 @@ typedef struct s_game
 typedef struct s_flood
 {
 	char	**map;
+	int		*stack;
 	int		width;
 	int		height;
+	int		top;
 	int		closed;
 }	t_flood;
 
