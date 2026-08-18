@@ -6,7 +6,7 @@
 /*   By: ervsahin <ervsahin@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 14:21:47 by ervsahin          #+#    #+#             */
-/*   Updated: 2026/08/12 17:43:07 by ervsahin         ###   ########.fr       */
+/*   Updated: 2026/08/18 13:51:19 by ervsahin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@
 # define CEILING_ID 6
 # define TILE_SIZE 16
 
-# define MINIMAP_CELL 10
-# define MINIMAP_RADIUS 15
+# define MINIMAP_CELL 12
+# define MINIMAP_RADIUS 4
+
 # define MINIMAP_OFF_X 15
 # define MINIMAP_OFF_Y 15
 
